@@ -2,19 +2,24 @@ Title
 A nice short title for your project, helping me to understand roughly what it is you are trying to do.
 
 Team
-We are team Treeo. Our group consists of Madelyn Forster (mgforste), Ashley Rauch (suID) and Brealin Redecker (suID). The POC person will be ____.
+We are team Treeo. Our group consists of Madelyn Forster (mgforste), Ashley Rauch (ashrauch4) and Brealin Redecker (brealinredecker). The POC person will be ____.
 
 
 Introduction
-This section will introduce your project. It will briefly answer the following questions from Heilmeier's catechism.
+Our project will be about prediciting crime and the volatility of the crime. 
+We are going to use our crime data to uncover patterns, predict hotspots, and improve public safety by analyzing historical incident data, location, and time. 
 
-What are you trying to do? Articulate your objectives using absolutely no jargon.
-What is new in your approach and why do you think it will be successful? (be brief here, you can expand more later!)
-Who cares? If you are successful, what difference will it make?
+Our approach uses old methods of crime prediction such as hotspot analysis, geospatial mapping, and predictive policing to proactively deploy resources but we will add to this by 
+identifying trends within a specific area and changes in behavior over time. Looking at if crime tendencies are the same now as they were in 2020. This is important when teaching
+police officers how to go about the crimes. We think this will be successful because our dataset gives us all the possible variables, such as time and location, to implement our models. 
+
+Who should care about this? In 2023, 22,830 people were killed via homocide. There are more on top of this due to those that get injured due to aggrevated crimes. 
+This trend has improved over time and in 2025, crimes are decreasing per capita. But they are still happening and, unfortunately, are inevitable. To prepare for such events, cities have
+to equip their policing departments with the proper information to handle the crimes more efficiently. Our analysis is designed to inform the cities the areas that are more prone to 
+crimes to put a proper amount of officers and equipment there. This will hopefully better handle the crimes and save more lives along the way. 
 
 
 Literature Review
-This section will answer the second question from Heilmeier's catechism:
 
 How is it done today, and what are the limits of current practice?
 Here, you will review methods that have been attempted (use Google Scholar to find out), or cite literature to provide evidence that your method is novel. You should include citations to reviewed material. Use github's markdown syntax for footnotes1.
