@@ -1,30 +1,26 @@
-Title
-Analyzing and prediciting crime in Los Angeles. A tool created to help police departments maximize their effectiveness and help fight crime before it begins.
+## Enhancing Public Safety: A Comprehensive Analysis of Geospatial Shifts in Los Angeles and Prediction of Crime Volatility
 
-Team
-We are team Treeo. Our group consists of Madelyn Forster (mgforste), Ashley Rauch (ashrauch4) and Brealin Redecker (brealinredecker). The POC person will be ____.
+### Team
+Our team, Treeo, consists of three members:
+- Ashley Rauch will act as the POC for the group - ashrauch4
+- Madeyln Forster - mgforste
+- Brealin Redecker (brealinredecker)
 
+### Introduction
+Our crime reporting dataset reflects all incidents of crime in the City of Los Angeles dating back to 2020, collected by The Los Angeles Police Department (LAPD). Ensuring the safety of the public is a fundamental responsibility of the government. Crime, of all levels, can lead to loss of life, physical injury, and significant economic and social impacts on individuals and communities. While a certain level of crime may be considered inevitable, we aim to uncover structural shifts in crime patterns and build a tool that predicts crime volatility and potential "hotspots". The tool will enable the development of evidence-based strategies in terms of resource allocation, prevention, and intervention to improve public safety. 
 
-Introduction
-Our project will be about prediciting crime and the volatility of the crime. 
-We are going to use our crime data to uncover patterns, predict hotspots, and improve public safety by analyzing historical incident data, location, and time. 
+Many crime prediction models explore the association between a single factor, typically demographic data, and crimes. With the rise of AI and machine learning, predicting crime volatility is beginning to evolve from static hotspot mapping into predictive policing. Our approach will build on this by mapping dynamic systems and identifying when crime profiles change. This approach will allow stakeholders to distinguish between chronic crime areas and emerging high-volatility areas that may need more attention as a way to proactively deploy resources. Our dataset contains all the variables needed to successfully implement the approach and our models.
 
-Our approach uses old methods of crime prediction such as hotspot analysis, geospatial mapping, and predictive policing to proactively deploy resources but we will add to this by 
-identifying trends within a specific area and changes in behavior over time. Looking at if crime tendencies are the same now as they were in 2020. This is important when teaching
-police officers how to go about the crimes. We think this will be successful because our dataset gives us all the possible variables, such as time and location, to implement our models. 
+In Los Angeles, there was a peak in most crime categories during the pandemic. Since then, there has been an overall downward trend across many categories. However, crimes will always occur and the rates by neighborhoods are constantly changing. Success in this project will provide the LAPD and city administratives with a dyanmic resource allocation tool. It will ensure resources are present in emerging high-volatility zones rather than more stable ones as well as aid in future city infrastructure planning. More lives will be protected and the city will be a safer place to live.
 
-Who should care about this? In 2023, 22,830 people were killed via homocide. There are more on top of this due to those that get injured due to aggrevated crimes. 
-This trend has improved over time and in 2025, crimes are decreasing per capita. But they are still happening and, unfortunately, are inevitable. To prepare for such events, cities have
-to equip their policing departments with the proper information to handle the crimes more efficiently. Our analysis is designed to inform the cities the areas that are more prone to 
-crimes to put a proper amount of officers and equipment there. This will hopefully better handle the crimes and save more lives along the way. 
-
-
-Literature Review
+### Literature Review
 Would you guys be able to do this? I kept the instructions in it. 
 How is it done today, and what are the limits of current practice?
 Here, you will review methods that have been attempted (use Google Scholar to find out), or cite literature to provide evidence that your method is novel. You should include citations to reviewed material. Use github's markdown syntax for footnotes1.
 
 Also use this section to establish stakeholder needs. That is, for stakeholders that have specific but perhaps non-obvious needs (e.g., a city traffic planner will need to know about temporal variation in pedestrian traffic and the density of office buildings in order to determine the best placement of traffic signals). You should list each of your stakeholders here, explain why they are stakeholders, and the clarify needs. Recall from our lecture that I do not expect you to do your own stakeholder interviews, but I do expect you to do a little research online.
+- police
+- city mapping and planning
 
 Data and Methods
 Our data is from 'data.gov' and is a crime data set that gives crime information from 2020-present given by the Los Angeles Police Department. With this data, we plan to run some 
