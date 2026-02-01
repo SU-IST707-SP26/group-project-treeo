@@ -1,5 +1,5 @@
 Title
-A nice short title for your project, helping me to understand roughly what it is you are trying to do.
+Analyzing and prediciting crime in Los Angeles. A tool created to help police departments maximize their effectiveness and help fight crime before it begins.
 
 Team
 We are team Treeo. Our group consists of Madelyn Forster (mgforste), Ashley Rauch (ashrauch4) and Brealin Redecker (brealinredecker). The POC person will be ____.
@@ -20,32 +20,46 @@ crimes to put a proper amount of officers and equipment there. This will hopeful
 
 
 Literature Review
-
+Would you guys be able to do this? I kept the instructions in it. 
 How is it done today, and what are the limits of current practice?
 Here, you will review methods that have been attempted (use Google Scholar to find out), or cite literature to provide evidence that your method is novel. You should include citations to reviewed material. Use github's markdown syntax for footnotes1.
 
 Also use this section to establish stakeholder needs. That is, for stakeholders that have specific but perhaps non-obvious needs (e.g., a city traffic planner will need to know about temporal variation in pedestrian traffic and the density of office buildings in order to determine the best placement of traffic signals). You should list each of your stakeholders here, explain why they are stakeholders, and the clarify needs. Recall from our lecture that I do not expect you to do your own stakeholder interviews, but I do expect you to do a little research online.
 
 Data and Methods
-This section will introduce your data and specify your modeling approach.
+Our data is from 'data.gov' and is a crime data set that gives crime information from 2020-present given by the Los Angeles Police Department. With this data, we plan to run some 
+easy-to-understand models in order to help LAPD. We will use grid-based clustering by dividing LA into geographic cells and predicting crime density in each area. Once we have the 
+'hotspot areas', we will add the time variable to this and use change point detection to pinpoint exact months/quarters when crime patterns changed significantly. Then, once we know
+the answers (outputs) to our data, we will run a random forest to predict if an area will have high crime given time, location, day of week. If time permits, we also want to run a 
+K-Means Clustering model to analyze trends over time and see how the crime clusters have changed from 2020 to 2025.
 
 Data
-You will include a link to your data, along with summary information (e.g., how many columns, rows, and the types of features). Also include some discussion about the data's provenance - how do you know the data is reliable? Does it have meta data, and if not, what else do you know about it? If you anticipate needing more than one dataset, please indicate each dataset you anticipate needing and provide evidence that those datasets are available.
+Our data is from 'data.gov' and is Crime data from 2020-Present in Los Angeles. Here is a link to where to download our data, 'https://catalog.data.gov/dataset/crime-data-from-2020-to-present'. 
+Our data has 28 columns, 1,004,991 rows with 13 string columns, 7 integer columns, and 8 float columns. 
+
+The data is reliable because it is from a '.gov' website which means everything they post has to be accurate. According to the Freedom of Information Act, they are legally obligated 
+to disclose information—including crime data and records of misconduct—under public records laws.
+
+Our data does have meta data. It is in a json format within the link of the data. Some takeaways from the meta data, published by the Los Angeles Police Department (LAPD), it is
+publically available data, and it was last updated on January 2, 2026.
+
 
 Methods
+This needs to be done. 
 Describe your modeling approach. What sorts of transformations / preprocessing are going to be necessary? What sorts of modeling techniques will you apply? How are you going to evaluate your models (note that your evaluation should be consistent with stakeholder needs)?
 
 Project Plan
-Along with this project proposal, you will commit an initial version of the project management documents. However, I would also like you to provide a rough timeline here for the project in the following form, broken out into two week periods.
+2/2-2/16: EDA, data cleaning, initial summary graphs/descriptions
+2/16-3/2: Initial analysis, first model and its effectiveness
+3/2-3/16: Build off of the first model, explore its errors and areas for improvement. Begin to work on second model while improving on the first model.
+3/16-3/30: Finish second model and have the first model established and ready to go.
+3/30-4/13: Identify takeaways from our models and add anything we might think is necessary.
+4/13-4/27: Finishing touches/making the project easily understandable.
 
-Period	Activity	Milestone
-9/10 - 9/23	Stakeholder analysis
-EDA
-Initial exploration with LSTM networks on toy data	Completed stakeholder analysis and data exploration. Additional datasets identified as necessary.
-9/24 - 10/8	Preprocessing and modeling refinements. Continuing exploration of LSTM and other temporal ML techniques	Initial pass with cleaned data. Candidate approaches for modeling finalized.
-etc.
 
 Risks
+This needs to be completed. 
+
 This section will describe potential risks to the project. This should include both potential pitfalls and roadblocks, as well as any approaches to mitigation. What will you do if some aspect of your plan fails?
 
 Grading
