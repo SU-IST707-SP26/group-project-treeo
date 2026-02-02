@@ -14,15 +14,15 @@ Many crime prediction models explore the association between a single factor, ty
 In Los Angeles, there was a peak in most crime categories during the pandemic. Since then, there has been an overall downward trend across many categories. However, crimes will always occur and the rates by neighborhoods are constantly changing. Success in this project will provide the LAPD and city administratives with a dyanmic resource allocation tool. It will ensure resources are present in emerging high-volatility zones rather than more stable ones as well as aid in future city infrastructure planning. More lives will be protected and the city will be a safer place to live.
 
 ### Literature Review
-Would you guys be able to do this? I kept the instructions in it. 
-How is it done today, and what are the limits of current practice?
-Here, you will review methods that have been attempted (use Google Scholar to find out), or cite literature to provide evidence that your method is novel. You should include citations to reviewed material. Use github's markdown syntax for footnotes1.
+Currently, predictive policing is the main approach to predict and prevent future crimes by analyzing large sets of data(Lau). It utilizes a variety of computer algorithms, such as neural networks, deep learning models, and clustering. This method traditionally is subjected to "near-repeat victimization", meaning crimes are more likely to happen nearby previously reported crimes. However, recent studies (Haskins) have found these models are often too simple and creates a self-enforcing feedback loop where police go to the same neighborhoods due to recent history rather than where new crime is actually occurring. However, these models also come with limitations, specifically regarding lack of transparency and inclusion of biases, especially racial factors. The LAPD had intially implemented predictive policing and has since begun to reduce their programs. 
 
-Also use this section to establish stakeholder needs. That is, for stakeholders that have specific but perhaps non-obvious needs (e.g., a city traffic planner will need to know about temporal variation in pedestrian traffic and the density of office buildings in order to determine the best placement of traffic signals). You should list each of your stakeholders here, explain why they are stakeholders, and the clarify needs. Recall from our lecture that I do not expect you to do your own stakeholder interviews, but I do expect you to do a little research online.
-- police
-- city mapping and planning
+Effective prediction of crime volatility and geospatial shifts is important to a number of stakeholders, and its effective use can have a powerful impact. 
 
-Data and Methods
+First, and the primary stakeholder, government authorities are responsible for public safety, and crime incidents are a major public safety concern. They aim to reduce the number of crimes, fatalities, injuries, and economic impacts in the areas they govern. If crime volatility can be accurately predicted, they are able to distribute resources more accurately. For example, the daily deployment of police officers and the reason why a zone may be high risk. Moreover, it is important for future city planning and infrastructure developments.
+
+Secondly, the city residents are directly impacted by crimes. The individuals in communities that may be "high-policed" deserve transparency and equity, with evidence the model isn't biased and based on old data. 
+
+### Data and Methods
 Our data is from 'data.gov' and is a crime data set that gives crime information from 2020-present given by the Los Angeles Police Department. With this data, we plan to run some 
 easy-to-understand models in order to help LAPD. We will use grid-based clustering by dividing LA into geographic cells and predicting crime density in each area. Once we have the 
 'hotspot areas', we will add the time variable to this and use change point detection to pinpoint exact months/quarters when crime patterns changed significantly. Then, once we know
@@ -41,6 +41,7 @@ publically available data, and it was last updated on January 2, 2026.
 
 
 Methods
+- reinforced machine learning
 This needs to be done. 
 Describe your modeling approach. What sorts of transformations / preprocessing are going to be necessary? What sorts of modeling techniques will you apply? How are you going to evaluate your models (note that your evaluation should be consistent with stakeholder needs)?
 
