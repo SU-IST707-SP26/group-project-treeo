@@ -23,29 +23,29 @@ First, and the primary stakeholder, government authorities are responsible for p
 Secondly, the city residents are directly impacted by crimes. The individuals in communities that may be "high-policed" deserve transparency and equity, with evidence the model isn't biased and based on old data. 
 
 ### Data and Methods
-Our data is from 'data.gov' and is a crime data set that gives crime information from 2020-present given by the Los Angeles Police Department. With this data, we plan to run some 
-easy-to-understand models in order to help LAPD. We will use grid-based clustering by dividing LA into geographic cells and predicting crime density in each area. Once we have the 
+#### Data
+Our project will utilize data from 'data.gov' and is a crime data set that gives crime information from 2020-Present in Los Angeles. The link to our data can be found here: https://catalog.data.gov/dataset/crime-data-from-2020-to-present. The data has 28 columns, a combination of string, integer, and float features, with over a million rows of data. As the data is government data, it must be accurate, ensuring it is reliable for model use. Also, according to the Freedom of Information Act, they are legally obligated to disclose information — including crime data and records of misconduct — under public records laws. The data includes meta deta, such as that it was published by the Los Angeles Police Department (LAPD), it is publically available data, and it was last updated on January 2, 2026.
+
+#### Methods
+To start, we plan on computing transformations and preprocessing. We plan on converting date and times into cyclical features and spatial binning to divide Los Angeles into uniform areas to make the data manageable. 
+
+With this data, we plan to run some easy-to-understand models in order to help LAPD. We will use grid-based clustering by dividing LA into geographic cells and predicting crime density in each area. Once we have the 
 'hotspot areas', we will add the time variable to this and use change point detection to pinpoint exact months/quarters when crime patterns changed significantly. Then, once we know
 the answers (outputs) to our data, we will run a random forest to predict if an area will have high crime given time, location, day of week. If time permits, we also want to run a 
 K-Means Clustering model to analyze trends over time and see how the crime clusters have changed from 2020 to 2025.
 
-Data
-Our data is from 'data.gov' and is Crime data from 2020-Present in Los Angeles. Here is a link to where to download our data, 'https://catalog.data.gov/dataset/crime-data-from-2020-to-present'. 
-Our data has 28 columns, 1,004,991 rows with 13 string columns, 7 integer columns, and 8 float columns. 
+Modeling:
 
-The data is reliable because it is from a '.gov' website which means everything they post has to be accurate. According to the Freedom of Information Act, they are legally obligated 
-to disclose information—including crime data and records of misconduct—under public records laws.
+Change Point Detection: We will use the ruptures library in Python to find "structural breaks" in the crime time-series for each area.
 
-Our data does have meta data. It is in a json format within the link of the data. Some takeaways from the meta data, published by the Los Angeles Police Department (LAPD), it is
-publically available data, and it was last updated on January 2, 2026.
+Random Forest Classification: To predict the severity of a crime (Misdemeanor vs. Felony) based on time, location, and area volatility.
 
+Evaluation: We will use Area Under the Precision-Recall Curve (AUPRC). Since high-crime events are rarer than low-crime events, AUPRC is a better measure of "effectiveness" for police than simple accuracy.
 
 Methods
 - reinforced machine learning
-This needs to be done. 
-Describe your modeling approach. What sorts of transformations / preprocessing are going to be necessary? What sorts of modeling techniques will you apply? How are you going to evaluate your models (note that your evaluation should be consistent with stakeholder needs)?
 
-Project Plan
+### Project Plan
 2/2-2/16: EDA, data cleaning, initial summary graphs/descriptions
 2/16-3/2: Initial analysis, first model and its effectiveness
 3/2-3/16: Build off of the first model, explore its errors and areas for improvement. Begin to work on second model while improving on the first model.
