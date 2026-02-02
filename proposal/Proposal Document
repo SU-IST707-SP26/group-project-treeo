@@ -29,21 +29,7 @@ Our project will utilize data from 'data.gov' and is a crime data set that gives
 #### Methods
 To start, we plan on computing transformations and preprocessing. We plan on converting date and times into cyclical features and spatial binning to divide Los Angeles into uniform areas to make the data manageable. 
 
-With this data, we plan to run some easy-to-understand models in order to help LAPD. We will use grid-based clustering by dividing LA into geographic cells and predicting crime density in each area. Once we have the 
-'hotspot areas', we will add the time variable to this and use change point detection to pinpoint exact months/quarters when crime patterns changed significantly. Then, once we know
-the answers (outputs) to our data, we will run a random forest to predict if an area will have high crime given time, location, day of week. If time permits, we also want to run a 
-K-Means Clustering model to analyze trends over time and see how the crime clusters have changed from 2020 to 2025.
-
-Modeling:
-
-Change Point Detection: We will use the ruptures library in Python to find "structural breaks" in the crime time-series for each area.
-
-Random Forest Classification: To predict the severity of a crime (Misdemeanor vs. Felony) based on time, location, and area volatility.
-
-Evaluation: We will use Area Under the Precision-Recall Curve (AUPRC). Since high-crime events are rarer than low-crime events, AUPRC is a better measure of "effectiveness" for police than simple accuracy.
-
-Methods
-- reinforced machine learning
+In terms of modeling, based off the critics of current approaches, we aim to use reinforced machine learning. We aim to run a random forest model to predict severity of a crime based on area volatility, time, location, day of week, etc. We also want to employ k-means clustering to analyze trends over time and see how the crime clusters have changed from 2020 to 2025. This leads into change point detection, which will allow us to find the "structural breaks" in the crime time-series for each area. To evaluate the models, we will use precision-recall curves rather than simple accuracy as high-crime events are rarer than low-crime events, making it more effective.
 
 ### Project Plan
 2/2-2/16: EDA, data cleaning, initial summary graphs/descriptions
@@ -59,10 +45,4 @@ This needs to be completed.
 
 This section will describe potential risks to the project. This should include both potential pitfalls and roadblocks, as well as any approaches to mitigation. What will you do if some aspect of your plan fails?
 
-Grading
-Does your proposal include all of the above mentioned sections? [1 point]
-Have you clearly identifed your stakeholders and their needs [1 point]
-Have you answered the 5 Heilmeier questions mentioned effectively [1 points]
-Are your initial project management documents in place and do they follow the guidelines [1 point]
-Is you proposal plan feasible, and do you have sufficient detail to give me confidence that you will succeed? [1 point]
 Footnotes
