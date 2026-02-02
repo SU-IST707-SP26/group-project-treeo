@@ -26,10 +26,34 @@ Secondly, the city residents are directly impacted by crimes. The individuals in
 #### Data
 Our project will utilize data from 'data.gov' and is a crime data set that gives crime information from 2020-Present in Los Angeles. The link to our data can be found here: https://catalog.data.gov/dataset/crime-data-from-2020-to-present. The data has 28 columns, a combination of string, integer, and float features, with over a million rows of data. As the data is government data, it must be accurate, ensuring it is reliable for model use. Also, according to the Freedom of Information Act, they are legally obligated to disclose information — including crime data and records of misconduct — under public records laws. The data includes meta deta, such as that it was published by the Los Angeles Police Department (LAPD), it is publically available data, and it was last updated on January 2, 2026.
 
-#### Methods
-To start, we plan on computing transformations and preprocessing. We plan on converting date and times into cyclical features and spatial binning to divide Los Angeles into uniform areas to make the data manageable. 
+###Stakeholders
+Our primary and key stakeholder for this model is the Los Angeles Police Department, specifically the units responsible for strategic planning, crime analysis, and patrol resource allocation.
+These units are tasked with deploying limited personnel and resources across a large and diverse city while maintaining efficiency and public trust. Current 'hotspot' models usually emphasize
+chronic high-crime areas which result in static deployment patterns and reinforce historical policing biases. By designing our model, we hope to provide an analytical tool that can distiguish
+stable high-crime zones from emergencying high-volatility areas so the LAPD will be able to better anticipate where crime risk is changing and be more effective.
+Their needs are as follows,
+1. Actionable Predictions: LAPD requires forward looking predictions that identify areas at elevated risk before crime surges occur. The outputs should be spatially specific and time bound.
+2. Transparency: In order to maintain public trust, the model must be able to be clearly explained. Decision makers must understand why an area is flagged.
+3. Adaptability to Changing Crime Patterns: Crime dynamics in Los Angeles shift significantly. The model must be capable of detecting structural changes over time rather than assuming patterns are static.
 
-In terms of modeling, based off the critics of current approaches, we aim to use reinforced machine learning. We aim to run a random forest model to predict severity of a crime based on area volatility, time, location, day of week, etc. We also want to employ k-means clustering to analyze trends over time and see how the crime clusters have changed from 2020 to 2025. This leads into change point detection, which will allow us to find the "structural breaks" in the crime time-series for each area. To evaluate the models, we will use precision-recall curves rather than simple accuracy as high-crime events are rarer than low-crime events, making it more effective.
+###Methods
+Our modeling approach, as of now, is going to be implementing supervised machine learning models, particularily regression and a tree-based model, to predict crime intensity and votality across spatial grid cells.
+To ensure operational revelance and transparency, our model will prioritize interpretable methods and forward-looking predicitons rather than prescriptive enforcement actions.
+
+Before beginning to build our model we will need to remove duplicate or incomplete records, validate and filter spatial coordinates, extract temporal features such as month, year, and day of the week, we will create
+lagged and rolling statistical features, and normalize where necessary to ensure stable model performance.
+
+First, we will need to take the crime incidents and aggregate them using a grid-based spatial framework, dividing LA into uniform geographic cells.
+Each incident will be assigned to a grid cell based on its latitude and longtitude. The crime counts will then be aggregated within each cell over fixed time intervals in order to produce a consistent spatiotemporal dataset.
+
+The second step will be to identify shifts in crime patterns using change point detection techniques to the time series of crime counts within each grid cell. This will show us the statistically significant changes, giving
+us the ability to pinpoint crime behaviour changes and document appropriately.
+
+We would then want to create our baseline model using regressions. Creating interpretable baselines for predicting crime counts within each grid cell.
+Then we would use tree-based models to predict future crime intensity and the probability that a grid cell will experience high crime volatility. This model is a good choice because it has the capability to capture
+nonlinear relationships and interactions between time, location, and historical crime behaviour.
+
+Our model will be validated using a time aware technique such as rolling or walking-forward validation to simulate real-world forecasting conditions. Some of the metrics we can use for validation are MAE and RMSE for crime counts and precision, recall, and F1 score for the high-volatility areas.
 
 ### Project Plan
 2/2-2/16: EDA, data cleaning, initial summary graphs/descriptions
