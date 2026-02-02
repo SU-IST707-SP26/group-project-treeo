@@ -55,9 +55,11 @@ Period|Activity|Milestone|
 |4/13-4/27|Finishing touches|Final report and slides
 
 ### Risks
-This needs to be completed. 
-
-This section will describe potential risks to the project. This should include both potential pitfalls and roadblocks, as well as any approaches to mitigation. What will you do if some aspect of your plan fails?
+There are several potential risks that may arise during this project.
+The first key risk is data bias and reinforcement of historical policing patterns. It is the nature of crime data to reflect reported incidents which raises the possibility that the model may unintentionally emphasize areas that have historically recieved higher levels of police attention rather than the areas where crime risk is newly emerging. We must mitigate this risk by ensuring the model can predict the crime volatility and change.
+The second key risk is model overfitting when using the tree-based models on data that can be considered high-dimensional. Overfitting will cause strong performance on the historical data but poor predictive accuracy when it comes to future time periods. We will need to mitigate this risk through using the time-aware validation methoids and compare their results against simpler regresion baselines.
+The third key risk is our spatial aggregation choices. If we breakdown LA into grid cells that are too small, it will introduce noise and instability; however, if we breakdown LA into grid cells that are too large the crime patterns may become obscure. During our EDA we will need to explore different options for breaking up the locations and ensure we are selecting a grid size that balances predictive performance with interpretability.
+In the event that any component of our project does not perform as expected, we will have to adapt our approach by researching new options or refining the methods at hand. An issue with dataset size can be resolved by using a smaller subset of our data. An issue with overfitting, can be resolved by utilizing more simplier models. If our geographical data is not giving us good insights we will troubleshoot and test different sizes.
 
 ### References
 “Delivering Accountability: A Plan To Stop Crime in Our Communities.” Center for American Progress, 29 Jan. 2026, www.americanprogress.org/article/delivering-accountability-a-plan-to-stop-crime-in-our-communities/. 
