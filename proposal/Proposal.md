@@ -30,6 +30,7 @@ Secondly, the city residents are directly impacted by crimes. The individuals in
 #### Data
 Our project will utilize data from 'data.gov' and is a crime data set that gives crime information from 2020-Present in Los Angeles. The link to our data can be found here: https://catalog.data.gov/dataset/crime-data-from-2020-to-present. The data has 28 columns, a combination of string, integer, and float features, with over a million rows of data. As the data is government data, it must be accurate, ensuring it is reliable for model use. Also, according to the Freedom of Information Act, they are legally obligated to disclose information — including crime data and records of misconduct — under public records laws. The data includes meta deta, such as that it was published by the Los Angeles Police Department (LAPD), it is publically available data, and it was last updated on January 2, 2026.
 
+Metadata link: https://data.lacity.org/Public-Safety/Crime-Data-from-2020-to-Present/2nrs-mtv8/about_data
 #### Methods
 Our modeling approach, as of now, is going to be implementing supervised machine learning models, particularily regression and a tree-based model, to predict crime intensity and votality across spatial grid cells. To ensure operational revelance and transparency, our model will prioritize interpretable methods and forward-looking predicitons rather than prescriptive enforcement actions.
 
