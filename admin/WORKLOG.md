@@ -1,4 +1,12 @@
 # WORKLOG.md
+## 2026-02-15 - Project Planning
+
+**Context**: Created intial workplan for the project
+
+**Work Completed**:
+- Finalized workplan.md (Ashley)
+
+---
 
 ## 2026-02-08 - Project Kickoff (Team)
 
