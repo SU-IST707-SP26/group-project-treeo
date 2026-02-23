@@ -163,3 +163,5 @@ cython_debug/
 
 # Mac OS
 .DS_Store
+checkpoint/Crime_Data_from_2020_to_Present.csv
+checkpoint/Crime_Data_from_2020_to_Present.csv

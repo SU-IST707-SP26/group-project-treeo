@@ -1,12 +1,24 @@
 # WORKLOG.md
+## 2026-02-15 - Project Planning
 
-## [DATE] - [ACTIVITIES] [(team member(s) who contributed)]
-
-**Context**: 
+**Context**: Created intial workplan for the project
 
 **Work Completed**:
+- Finalized workplan.md (Ashley)
 
+---
 
-**Impact**: 
+## 2026-02-08 - Project Kickoff (Team)
 
-**Next Steps**: 
+**Context**: Set up project infrastructure and complete initial EDA
+
+**Work Completed**:
+- Downloaded LA crime dataset from Data.gov Open Portal (Maddy)
+- Dataset has 28 columns and over 1 million observations over a 6 year period
+- Set up repository structure (admin/, work/, data/)
+- Created initial VISION.md (Ashley)
+
+**Files Created**:
+- `checkpoint/Exploratory Data Analysis.ipynb`
+
+**Impact**: Project infrastructure in place
