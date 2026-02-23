@@ -1,0 +1,7 @@
+This is really good and very thoughtful proposal.  As you are aware, there are two big risks - biased predictions (please read up on COMPAS - you'll find some good reporting on this system and a very nuanced discussion of bias) and the tendency to lead to over-policing (which leads to self-fulfilling prophecies...).
+
+So, you really need a good plan going in on how to grapple with this.  I think one thing that would help - perhaps you meant this anyway - would be to tighten your stakeholder to the LAPD, and frame the problem as "where do I field my forces?"  That's going to require an extra layer of thinking, and maybe some what-if modeling. For instance, assume that less than 100% of crimes are caught / reported, but that this number increases in some relation to police presence.  If you add this into your model, what would you algorithm do?  How would you guard against sinking all of your forces into "hotspots?"  If you just predict where crimes are likely to occur, there will be a tendency to over-police.  If you recommend force deployments directly, or also provide indicators of missed crimes in other areas, maybe you can counter this.
+
+It's a lot to think about - please reach out if you need help.
+
+SCORE: 5/5
