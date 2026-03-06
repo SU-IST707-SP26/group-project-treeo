@@ -22,3 +22,17 @@
 - `checkpoint/Exploratory Data Analysis.ipynb`
 
 **Impact**: Project infrastructure in place
+
+---
+
+## 2026-03-06 - Modeling (Team)
+
+**Context**: Began modeling process.
+**Work Completed**:
+- Built a baseline linear regression model (Brealin)
+- 
+
+**Files Created**:
+- `models/baseline_regression` (Brealin)
+
+**Impact**: Beginning the modeling process
