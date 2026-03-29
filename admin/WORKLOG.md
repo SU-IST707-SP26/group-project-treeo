@@ -1,4 +1,20 @@
 # WORKLOG.md
+
+## 2026-03-29 - Random Forest Models
+
+**Context**: Continued working on the random forest modeling.
+
+**Work Completed**:
+- Completed three iterations of Random Forest Modeling to try and fine tune the model.
+- Potentially looking for other modeling methods that might be more effective for our data and goal.
+
+**Files Created**:
+- `checkpoint/models/random_forest(1).ipynb` (Brealin)
+
+**Impact**: Second Modeling Method Complete
+
+---
+
 ## 2026-03-22 - Searching for Data
 
 **Context**: Find possible datasets that could be incorporated for policing and reporting
