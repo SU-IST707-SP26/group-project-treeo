@@ -1,1 +1,6 @@
-Maddy is searching for other data to add. I can't commit in the python files because my code space ran out until 4/1.
+Maddy is searching for other data to add. I can't commit in the python files because my code space ran out until 4/1. This data is from this website: https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/downloads
+From the website: 
+"The Crime Data Explorer (CDE) provides select datasets for download. 
+Incident-based data by state, summary data estimates, and data about other specific topics may be downloaded in CSV files from the selections below. 
+Data are also available via the Crime Data API, a read-only web service that returns JSON or CSV data, and provides experienced users access to 
+large amounts of UCR data to use and share."
