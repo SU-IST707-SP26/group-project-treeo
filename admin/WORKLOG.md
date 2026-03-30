@@ -7,6 +7,8 @@
 **Work Completed**:
 - Completed three iterations of Random Forest Modeling to try and fine tune the model.
 - Potentially looking for other modeling methods that might be more effective for our data and goal.
+- Downloaded possible additional dataset from bjs.ojp.gov. The tables are summaries, though, not raw data, but has enough information to be added (Ashley)
+- The other datasets don't include free downloadable csv files, but have useful information that could be implemented into the models we are creating (Ashley)
 
 **Files Created**:
 - `checkpoint/models/random_forest(1).ipynb` (Brealin)
