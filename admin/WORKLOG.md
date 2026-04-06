@@ -5,7 +5,7 @@
 **Context**: Started a XGBoost model.
 
 **Work Completed**:
-- Created an initial XGBoost model to see if we would have better results
+- Created an initial XGBoost model to see if we would have better results (Ashley)
 - Results were similar, so we need to address the imbalanced data and add additional data we've found
 
 **Impact**: Third Modeling Method Started
