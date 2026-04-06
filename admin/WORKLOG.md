@@ -1,5 +1,17 @@
 # WORKLOG.md
 
+## 2026-04-05 - XGBoost Model
+
+**Context**: Started a XGBoost model.
+
+**Work Completed**:
+- Created an initial XGBoost model to see if we would have better results
+- Results were similar, so we need to address the imbalanced data and add additional data we've found
+
+**Impact**: Third Modeling Method Started
+
+---
+
 ## 2026-03-29 - Random Forest Models
 
 **Context**: Continued working on the random forest modeling.

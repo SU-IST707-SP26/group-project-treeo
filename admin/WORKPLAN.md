@@ -24,7 +24,7 @@
 - [✅] M4.T1 — Train/test split by date
 - [✅] M4.T2 — Linear regression baseline
 - [✅] M4.T3 — Clustering baseline
-- [] M4.T4 — Random Forest model
+- [✅] M4.T4 — Random Forest model
 
 ### Milestone 5: Advanced Modeling
 - [ ] M5.T1 — Implement spatial lag and rolling features
@@ -42,3 +42,6 @@
 ## Changelog
 ### 2026-03-07
 - (Maddy) M1.T23 — Added an initial clustering model, in addition to the linear model
+
+### 2026-04-05
+- (Ashley) M4 — Added a XGBoost model
