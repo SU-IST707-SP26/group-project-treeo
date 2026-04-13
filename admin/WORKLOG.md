@@ -1,5 +1,19 @@
 # WORKLOG.md
 
+## 2026-04-12 - XGBoost Model
+
+**Context**: Researched on imbalanced data (Ashley)
+
+**Work Completed**:
+- There are many different possibilities for handling imbalanced data
+    - At the data level, as we are planning on pulling in policing information, we could also resample (either oversample with techniques like SMOTE or undersample)
+    - Since we are going to focus on tree-based algorithms, we could introduce sample weights, assigning higher weights to high-assault observations, high-volatility cells, or time-based
+    - Change the learning objective in the XGBoost model with a custom loss function or quantile loss - instead of predicting averages, predict upper bound risk zones with aligns with our stakeholders need of deployment in risky areas
+
+**Impact**: Created a plan for tuning the models to address problems with error reporting.
+
+---
+
 ## 2026-04-05 - XGBoost Model
 
 **Context**: Started a XGBoost model.
