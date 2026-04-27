@@ -1,5 +1,18 @@
 # WORKLOG.md
 
+## 2026-04-26 - Model Updates
+
+**Context**: Updated random forest and xgboost models (Ashley)
+
+**Work Completed**:
+- Handled imbalanced data by undersampling non-hotspot cells and prioritized recall
+- Transitioned to using precision, recall, F1-score, and AUC metrics
+
+**Files Created**:
+- `checkpoint/models/Updated Models.ipynb`
+
+---
+
 ## 2026-04-12 - XGBoost Model
 
 **Context**: Researched on imbalanced data (Ashley)
