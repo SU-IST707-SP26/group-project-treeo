@@ -55,6 +55,16 @@ Our modeling approach was designed to move beyond basic crime forecasting and in
     - Random Forest Regressor: Used for its ability to handle non-linear relationships and provide clear feature importance.
     - XGBoost Regressor: This was our best approach. We used gradient boosting to handle the zero-inflated nature of the grid cells.
     - Counterfactual Simulation: Once the best model was trained,  we re-ran the test set with estimated_officers and % of command set to zero. This allowed us to observe which "hotspots" persisted versus those that vanished.
+   
+We trained two versions of each model:
+
+Baseline model (no deployment features)
+Includes only temporal, spatial, and historical crime features
+Deployment model (with deployment features)
+Adds deployment-related variables to assess their incremental predictive value
+
+This comparison allows us to estimate the unique contribution of deployment to explaining crime variation.
+
 
 ### Methods 2.0
 Our modeling approach is designed to predict crime at a spatio-temporal level (grid cell × day) while evaluating the influence of police deployment on observed crime patterns.
@@ -141,7 +151,7 @@ Our final approach reflects a balance between predictive performance and interpr
     
 ### Results
 Our analysis yielded significant insights into the influence of deployment on reported crime. We evaluated our models using Mean Absolute Error (MAE) and R-squared (R²), as well as a custom "Hotspot Persistence" metric.
-1. Model Performance:The XGBoost (with deployment) model outperformed the baseline, achieving an R² of 0.44 and an MAE of 0.32. While these numbers seem low for standard regression, in the context of zero-inflated spatial crime data, they indicate a strong signal. 
+1. Model Performance:The XGBoost (with deployment) model outperformed the baseline, achieving an R-squared of 0.44 and an MAE of 0.32. While these numbers seem low for standard regression, in the context of zero-inflated spatial crime data, they indicate a strong signal. 
 
 2. The Counterfactual Experiment: Our most striking result came from the deployment simulation. We defined a "Hotspot" as a grid cell in the top 10% of predicted arrests.
     - Baseline Hotspots: 1,245 cells flagged.
@@ -202,9 +212,9 @@ Feature importance results from this model show increased relative importance of
 ### Discussion
 We successfully achieved our goal of framing the problem as "Where do I field my forces?" rather than "Where will arrests happen?" By isolating the variance uniquely explained by deployment, we addressed the stakeholder need for Resource Efficiency.
 
-Our results indicate that nearly one-third of NYC's crime hotspots may be artifacts of high officer density. For a stakeholder like the NYPD Strategic Planning Bureau, this is a call to action: instead of sinking more forces into these "Vanishing Hotspots," they should prioritize the 68% of Persistent Hotspots where the model predicts high crime even in the absence of police.
+Our results indicate that about 1/3 of NYC's crime hotspots may be artifacts of high officer density. For a stakeholder like the NYPD, this is a call to action because instead of putting more forces into these "Vanishing Hotspots," they should prioritize the 68% of Persistent Hotspots where the model predicts high crime even in the absence of police.
 
-Furthermore, our Relative Risk model addresses the need for Adaptability. By focusing on residuals, we identified "Blind Spots"—areas where crime is currently low but relative risk is spiking. This provides the NYPD with a tool to "explore" new areas rather than repeatedly "exploiting" historical hotspots.
+Furthermore, our Relative Risk model addresses the need for Adaptability. By focusing on residuals, we identified "Blind Spots" which are areas where crime is currently low but relative risk is spiking. This provides the NYPD with a tool to explore new areas rather than repeatedly exploiting historical hotspots.
 
 ### Discussion 2.0
 Discussion
@@ -235,17 +245,16 @@ Despite our progress, this work has limitations:
 
 ### Limitations 2.0
 Despite strong modeling results, several limitations remain:
-
-Deployment data granularity
-Deployment data is available only at the precinct level and is relatively static, limiting our ability to capture daily variation in policing.
-Use of arrest data as a proxy for crime
-Arrests reflect both criminal activity and police presence, introducing potential bias into the target variable.
-Lack of external factors
-The model does not include demographic, economic, or environmental variables that may influence crime patterns.
-Spatial approximation
-Grid cells are constructed using coordinate rounding, which may not perfectly align with real-world neighborhood boundaries.
-Causal limitations
-While we use counterfactual simulations, the model remains observational and cannot fully establish causal relationships.
+1. Deployment data granularity
+    Deployment data is available only at the precinct level and is relatively static, limiting our ability to capture daily variation in policing.
+2. Use of arrest data as a proxy for crime
+    Arrests reflect both criminal activity and police presence, introducing potential bias into the target variable.
+3. Lack of external factors
+    The model does not include demographic, economic, or environmental variables that may influence crime patterns.
+4. Spatial approximation
+    Grid cells are constructed using coordinate rounding, which may not perfectly align with real-world neighborhood boundaries.
+5. Causal limitations
+    While we use counterfactual simulations, the model remains observational and cannot fully establish causal relationships.
 
 ### Future Work
 The next steps for this project include:
