@@ -46,29 +46,28 @@ Our modeling approach was designed to move beyond basic crime forecasting and in
     - Temporal Aggregation: We aggregated the data to a daily level, ensuring the model could learn from day-of-week and seasonal trends.
 2. Target Variable Selection: We tested two targets: 
     - Target A (Base): crime_count (The raw number of arrests in a cell on a given day).
-    - Target B (Relative Risk/Residuals): The difference between the log-transformed actual arrests and the 30-day rolling mean. This "Bias-Reduced" target loooks at volatility when crime is higher than expected for that specific location.
+    - Target B (Relative Risk/Residuals): The difference between the log-transformed actual arrests and the 30-day rolling mean. This "Bias-Reduced" target looks at volatility when crime is higher than expected for that specific location.
 3. Feature Engineering: To provide the model with context, we made:
     - Lag Features: 1-day, 7-day, and 30-day lags to capture recent trends. 
     - Deployment Metrics: estimated_officers and % of command (Accountability metrics).
     - Categorical Encodings: One Hot Encoding for Boroughs and Precincts.
 4. Modeling Approaches:
     - Random Forest Regressor: Used for its ability to handle non-linear relationships and provide clear feature importance.
-    - XGBoost Regressor: Our "Best" approach. We used gradient boosting to handle the zero-inflated nature of the grid cells.
-    - Counterfactual Simulation: Once the "Best" model was trained, we conducted an experiment: we re-ran the test set with estimated_officers and % of command set to zero. This allowed us to observe which "hotspots" persisted (structural crime) versus those that vanished (officer-driven arrests).
+    - XGBoost Regressor: This was our best approach. We used gradient boosting to handle the zero-inflated nature of the grid cells.
+    - Counterfactual Simulation: Once the best model was trained,  we re-ran the test set with estimated_officers and % of command set to zero. This allowed us to observe which "hotspots" persisted versus those that vanished.
 
 ### Methods 2.0
-Our modeling approach is designed to predict crime at a spatiotemporal level (grid cell × day) while evaluating the influence of police deployment on observed crime patterns.
+Our modeling approach is designed to predict crime at a spatio-temporal level (grid cell × day) while evaluating the influence of police deployment on observed crime patterns.
 
-The primary target variable is: crime_count - the number of arrests in a given grid cell on a given day
+The primary target variable is crime_count which is the number of arrests in a given grid cell on a given day
 
-In addition, for counterfactual analysis, we derive: hotspot indicators, defined as grid cells with predicted crime in the top percentile (e.g., top 10%)
+Also, for alternative analysis, we derived hotspot indicators which grid cells with predicted crime in the top percentile (top 10%)
 
 ##### Data Transformation and Preprocessing
-
 To support this modeling task, we transformed the raw event-level arrest data into a panel dataset:
 
 Spatial aggregation
-Latitude and longitude coordinates were discretized into grid cells by rounding values, creating localized spatial units. Each grid cell was mapped to its nearest precinct using a nearest-neighbor approach.
+Latitude and longitude coordinates were grouped into grid cells by rounding values, creating localized spatial units. Each grid cell was mapped to its nearest precinct using a nearest-neighbor approach.
 Temporal aggregation
 Arrest events were grouped by grid cell and date to compute daily crime counts.
 Feature engineering
@@ -86,7 +85,6 @@ Categorical variables such as borough and bureau were encoded using one-hot enco
 Train-test split
 A time-based split was used, with the first 80% of dates used for training and the remaining 20% for testing. This preserves temporal structure and avoids leakage.
 ##### Modeling Approach
-
 We implemented two primary machine learning models:
 
 Random Forest Regressor
