@@ -28,9 +28,13 @@ The stakeholder needs for the NYPD are specific:
 This study integrates two distinct data sources to create a multi-dimensional view of NYC public safety:
 
 NYPD Arrest Data (2023-to-Date): Sourced via the Socrata API from NYC Open Data. This dataset represents every arrest made in New York City from 2023 to the present. It contains over 500,000 records across features such as offense description (OFNS_DESC), law category (LAW_CAT_CD), borough, and high-precision spatial coordinates (Latitude/Longitude). This data is the gold standard for "observed" crime in NYC.
-<img width="2683" height="887" alt="image" src="https://github.com/user-attachments/assets/0aa00325-e7a0-4df7-b2f8-0d73dbbd661a" />
+<img width="1484" height="881" alt="image" src="https://github.com/user-attachments/assets/196d1b90-f0c4-446a-a384-011d00f75d44" />
 
 NYPD Deployment and Accountability Report (2025): Sourced from official NYPD PDF downloads. This dataset provides critical "officer-level" features, including total assigned personnel per precinct and the percentage of the command flagged for accountability review.
+<img width="2683" height="887" alt="image" src="https://github.com/user-attachments/assets/8e1ee581-2fe0-41c3-be6e-9b868e737ec0" />
+
+Merged Dataset Visuals:
+<img width="2984" height="2732" alt="image" src="https://github.com/user-attachments/assets/57ad2a3e-a3f5-4c12-92b7-317a5f599330" />
 
 #### Methods
 Our modeling approach was designed to move beyond simple crime forecasting and into Counterfactual Analysis to address the "Observer Effect." The process involved a multi-stage pipeline:
