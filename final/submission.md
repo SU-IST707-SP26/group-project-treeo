@@ -3,7 +3,7 @@
 ### Team
 Our team, Treeo, consists of three members:
 - Ashley Rauch will act as the POC for the group - ashrauch4
-- Madeyln Forster - mgforste
+- Madelyn Forster - mgforste
 - Brealin Redecker - brealinredecker
 
 ### Introduction
@@ -27,7 +27,8 @@ The stakeholder needs for the NYPD are specific:
 #### Data
 This study integrates two distinct data sources to create a multi-dimensional view of NYC public safety:
 
-NYPD Arrest Data (Year-to-Date): Sourced via the Socrata API from NYC Open Data. This dataset represents every arrest made in New York City from 2023 to the present. It contains over 500,000 records across features such as offense description (OFNS_DESC), law category (LAW_CAT_CD), borough, and high-precision spatial coordinates (Latitude/Longitude). This data is the gold standard for "observed" crime in NYC.
+NYPD Arrest Data (2023-to-Date): Sourced via the Socrata API from NYC Open Data. This dataset represents every arrest made in New York City from 2023 to the present. It contains over 500,000 records across features such as offense description (OFNS_DESC), law category (LAW_CAT_CD), borough, and high-precision spatial coordinates (Latitude/Longitude). This data is the gold standard for "observed" crime in NYC.
+<img width="2683" height="887" alt="image" src="https://github.com/user-attachments/assets/0aa00325-e7a0-4df7-b2f8-0d73dbbd661a" />
 
 NYPD Deployment and Accountability Report (2025): Sourced from official NYPD PDF downloads. This dataset provides critical "officer-level" features, including total assigned personnel per precinct and the percentage of the command flagged for accountability review.
 
