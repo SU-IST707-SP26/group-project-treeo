@@ -33,7 +33,7 @@ NYPD Arrest Data (2023-to-Date): Sourced via the Socrata API from NYC Open Data.
 NYPD Deployment and Accountability Report (2025): Sourced from official NYPD PDF downloads. This dataset provides critical "officer-level" features, including total assigned personnel per precinct and the percentage of the command flagged for accountability review.
 <img width="2683" height="887" alt="image" src="https://github.com/user-attachments/assets/8e1ee581-2fe0-41c3-be6e-9b868e737ec0" />
 
-Merged Dataset Visuals:
+**Merged Dataset Visuals:**
 <img width="2984" height="2732" alt="image" src="https://github.com/user-attachments/assets/57ad2a3e-a3f5-4c12-92b7-317a5f599330" />
 
 #### Methods
