@@ -39,7 +39,9 @@ We then merged these two data sources together on precint value and were left wi
 <img width="2984" height="2732" alt="image" src="https://github.com/user-attachments/assets/57ad2a3e-a3f5-4c12-92b7-317a5f599330" />
 
 #### Methods
-Our modeling approach was designed to move beyond basic crime forecasting and into deployment analysis to address the potential over-policing problem. The process involved a multi-stage pipeline:
+Our modeling approach was designed to move beyond basic crime forecasting and into deployment analysis to address the potential over-policing problem.
+The primary target variable is crime_count which is the number of arrests in a given grid cell on a given day. Also, for alternative analysis, we derived hotspot indicators which grid cells with predicted crime in the top percentile (top 10%). The process involved a multi-stage pipeline:
+
 1. Data Transformation and Spatial Engineering: The raw arrest data (point coordinates) and deployment data (precinct headcounts) were on different spatial scales. To resolve this, we:
     - Created a Geospatial Grid: We rounded coordinates to two decimal places, creating approximately 2,000 unique grid cells (roughly 500m x 500m).
     - Nearest-Precinct Mapping: Using a BallTree algorithm with a Haversine metric, we calculated the distance between every grid cell centroid and the 77 NYPD precinct stations. Each cell was then assigned the officer headcount of its nearest precinct.
@@ -54,100 +56,22 @@ Our modeling approach was designed to move beyond basic crime forecasting and in
 4. Modeling Approaches:
     - Random Forest Regressor: Used for its ability to handle non-linear relationships and provide clear feature importance.
     - XGBoost Regressor: This was our best approach. We used gradient boosting to handle the zero-inflated nature of the grid cells.
-    - Counterfactual Simulation: Once the best model was trained,  we re-ran the test set with estimated_officers and % of command set to zero. This allowed us to observe which "hotspots" persisted versus those that vanished.
-   
-We trained two versions of each model:
+    - Counterfactual Simulation: Once the best model was trained,  we re-ran the test set with estimated_officers and % of command set to zero. This allowed us to observe which "hotspots" persisted versus those that vanished. We trained two versions of each model Baseline model (no deployment features) which includes only temporal, spatial, and historical crime features and a Deployment model (with deployment features) which adds deployment-related variables to assess their incremental predictive value.
 
-Baseline model (no deployment features)
-Includes only temporal, spatial, and historical crime features
-Deployment model (with deployment features)
-Adds deployment-related variables to assess their incremental predictive value
+    ##### Hotspot Analysis
+    We defined crime hotspots as grid cells with predicted crime levels above the 90th percentile. Using this definition, we:
+    
+    Identified hotspots under observed deployment
+    Recomputed hotspots under counterfactual scenarios
+    Measured persistence of hotspots at the grid level
+    
+    This enables us to distinguish between:
+    
+    Persistent hotspots (likely driven by structural factors)
+    Deployment-sensitive hotspots (influenced by policing levels)
 
-This comparison allows us to estimate the unique contribution of deployment to explaining crime variation.
-
-
-### Methods 2.0
-Our modeling approach is designed to predict crime at a spatio-temporal level (grid cell × day) while evaluating the influence of police deployment on observed crime patterns.
-
-The primary target variable is crime_count which is the number of arrests in a given grid cell on a given day
-
-Also, for alternative analysis, we derived hotspot indicators which grid cells with predicted crime in the top percentile (top 10%)
-
-##### Data Transformation and Preprocessing
-To support this modeling task, we transformed the raw event-level arrest data into a panel dataset:
-
-Spatial aggregation
-Latitude and longitude coordinates were grouped into grid cells by rounding values, creating localized spatial units. Each grid cell was mapped to its nearest precinct using a nearest-neighbor approach.
-Temporal aggregation
-Arrest events were grouped by grid cell and date to compute daily crime counts.
-Feature engineering
-We created several temporal and historical features:
-Lagged crime counts (1-day, 7-day, 30-day)
-Rolling averages (7-day and 30-day)
-Calendar features (month, day of week, weekend indicator, week of year)
-Deployment features
-Police deployment was incorporated using:
-Estimated number of officers assigned to the nearest precinct
-Percentage of command resources
-A derived deployment intensity measure, defined as officers relative to recent crime levels
-Categorical encoding
-Categorical variables such as borough and bureau were encoded using one-hot encoding via OneHotEncoder to avoid introducing artificial ordering.
-Train-test split
-A time-based split was used, with the first 80% of dates used for training and the remaining 20% for testing. This preserves temporal structure and avoids leakage.
-##### Modeling Approach
-We implemented two primary machine learning models:
-
-Random Forest Regressor
-XGBoost Regressor
-
-These models were selected due to their ability to:
-
-capture nonlinear relationships
-handle mixed feature types
-provide feature importance measures
-
-We trained two versions of each model:
-
-Baseline model (no deployment features)
-Includes only temporal, spatial, and historical crime features
-Deployment model (with deployment features)
-Adds deployment-related variables to assess their incremental predictive value
-
-This comparison allows us to estimate the unique contribution of deployment to explaining crime variation.
-
-##### Counterfactual Simulation
-
-To address the core stakeholder question, we implemented a counterfactual simulation framework:
-
-After training the deployment model, we generated predictions on the test set under:
-Observed deployment (baseline scenario)
-Zero deployment (all deployment variables set to zero)
-Reduced deployment (deployment variables scaled down)
-
-This allows us to estimate how crime patterns would change under alternative policing scenarios.
-
-##### Hotspot Analysis
-
-We defined crime hotspots as grid cells with predicted crime levels above the 90th percentile. Using this definition, we:
-
-Identified hotspots under observed deployment
-Recomputed hotspots under counterfactual scenarios
-Measured persistence of hotspots at the grid level
-
-This enables us to distinguish between:
-
-Persistent hotspots (likely driven by structural factors)
-Deployment-sensitive hotspots (influenced by policing levels)
-
-##### Alternative Approaches Considered
-
-We explored several variations of the modeling approach:
-
-Simple models without lag features: These performed poorly, indicating that temporal dependence is critical for prediction
-Raw deployment variables only: These had limited explanatory power, leading us to introduce normalized deployment intensity measures
-Label encoding for categorical variables: This introduced unintended ordinal relationships, so we replaced it with one-hot encoding
-
-Our final approach reflects a balance between predictive performance and interpretability, while enabling meaningful counterfactual analysis.
+    ##### Alternative Approaches Considered
+    We explored several variations of the modeling approach. One of which was a simple model without lag features which performed poorly. This told us that temporal dependence is important for prediction. We         also looked at raw deployment variables only which hadd limited explanatory power, leading us to introduce normalized deployment intensity measures. We also looked at label encoding for categorical variables     but this introduced unintended ordinal relationships, so we replaced it with one-hot encoding. Our final approach reflects a balance between predictive performance and interpretability, while enabling            meaningful counterfactual analysis.
     
 ### Results
 Our analysis yielded significant insights into the influence of deployment on reported crime. We evaluated our models using Mean Absolute Error (MAE) and R-squared (R²), as well as a custom "Hotspot Persistence" metric.
