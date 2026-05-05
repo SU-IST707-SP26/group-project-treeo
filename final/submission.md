@@ -27,9 +27,9 @@ The stakeholder needs we identified for the NYPD are the following:
 This study combines two data sources to create a multi-dimensional view of NYC public safety:
 
 NYPD Arrest Data (2023-to-Date): From the Socrata API from NYC Open Data. This dataset represents every arrest made in New York City from 2023 to the present. It contains over 500,000 records across features such as offense description (OFNS_DESC), law category (LAW_CAT_CD), borough, and high-precision spatial coordinates (Latitude/Longitude). This data will act as our "observed" crime in NYC. While the raw API data provides the where and when, the following visualizations help define the what and how. By examining the most common offenses alongside time-based distributions and variable correlations, we can establish a baseline for how police resources are currently distributed across the five boroughs.
-<img src="images/top15offenses.png" width="32%" />
-<img src="images/dowdistribution.png" width="32%" />
-<img src="images/corheatmap.png" width="32%" />
+<img src="images/top15offenses.png" width="30%" />
+<img src="images/dowdistribution.png" width="30%" />
+<img src="images/corheatmap.png" width="30%" />
 
 NYPD Deployment and Accountability Report (2025): From official NYPD PDF downloads. This dataset provides "officer-level" features, including total assigned personnel per precinct and the percentage of the command flagged for accountability review. By analyzing NYPD personnel data alongside arrest records, we can better visualize the relationship between police presence and internal accountability. The following charts break down the percentage of command review flags by bureau and precinct, providing a baseline for assessing departmental oversight across New York City.
 <img src="images/nypd_overview.png" />
@@ -71,8 +71,6 @@ The supporting Jupyter notebooks are in the work/ directory.
 | data_preprocessing_updated.ipynb | This notebook contains the final data cleaning and EDA when we used the API to extract the crime data. |
 | modeling.ipynb | This notebook contains initial grid creation and ideas prior to having all relevant datasets. |
 | modeling_use.ipynb | This notebook contains the Random Forest and XGBoost models we ran, with and without deployment. |
-
---------------------------------------
     
 ### Results
 Our analysis yielded significant insights into the influence of deployment on reported crime. We evaluated our models using Mean Absolute Error (MAE) and R-squared (R²), as well as a custom "Hotspot Persistence" metric.
@@ -133,8 +131,6 @@ Reduces reliance on historical crime as a dominant predictor
 Highlights the role of deployment in explaining deviations
 
 Feature importance results from this model show increased relative importance of deployment-related variables, supporting the idea that deployment plays a role in shaping observed crime patterns.
-
-----------------------------------------------------
 
 ### Discussion
 We achieved our goal of modeling the impact of police deployment on crime hotspots in New York City by isolating the variance uniquely explained by deployment. Our goal was to evaluate the relationship between police deployment and observed crime, and to provide a framework for more informed resource allocation. We were unable to specifically state where forces should be deployed, but by uncovering whether hotspots are structural or due to police density, we created a call to action. Our results indicate __% of New York City's crime hotspots may be the result of high deployment, and, hence, the NYPD should prioritize the __% of persistent hotspots wehre the model predicts high crime even in the absence of police.
