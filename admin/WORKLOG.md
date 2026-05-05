@@ -1,5 +1,53 @@
 # WORKLOG.md
 
+## 2026-05-04 - Finalize Final Report
+
+**Context**: Finalized the project
+
+**Work Completed**:
+- Revised sections of the final report, adding in images, results, etc. (Team)
+- Updated VISION.md and WORKPLAN.md to align with our pivoted project (Ashley)
+
+---
+
+## 2026-05-04 - Begin Final Submission
+
+**Context**: Started working on the final report
+
+**Work Completed**:
+- Created the final submission file and began filling in sections with previous work and ideas to include (Ashley)
+
+**Files Created**:
+- `final/submission.ipynb`
+
+---
+
+## 2026-05-02 - Model Updates
+
+**Context**: Enhanced the models
+
+**Work Completed**:
+- Created additional RandomForest and XGBoost models using relative risk and normalization of deployment forces (Brealin)
+
+---
+
+## 2026-05-02 - Project Revisions
+
+**Context**: Updated our vision to focus on NYC and impact of police deployment on hotspots
+
+**Work Completed**:
+- Found new crime datasets for NYC (Ashley and Maddy)
+- Data cleaning, preprocessing, and exploratory analysis on the new data (Ashley and Maddy)
+- Since we know we need to use tree-based models from our previous investigation, created RandomForest and XGBoost models immediately (Maddy) 
+
+**Files Created**:
+- `work/data_preprocessing.ipynb`
+- `work/data_preprocessing_updated.ipynb`
+- `work/modeling.ipynb`
+- `work/modeling_use.ipynb`
+
+---
+
 ## 2026-04-26 - Model Updates
 
 **Context**: Updated random forest and xgboost models (Ashley)

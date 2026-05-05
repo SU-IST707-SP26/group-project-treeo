@@ -7,41 +7,40 @@ Our team, Treeo, consists of three members:
 - Brealin Redecker - brealinredecker
 
 ### Introduction
-Our project uses the NYPD Year-to-Date Arrest dataset as well as the 2025 NYPD Deployment and Accountability report. The primary stakeholder for this project is the New York City Police Department responsible for public safety budgeting. These stakeholders are faced with the challenge of "The Observer Effect" which essentially means that crime data often reflects where police are already present rather than where crime is inherently occurring. This leads to a potentially bias loop where "hotspot" modeling leads to over-policing in high-activity zones while potentially ignoring "blind spots" in under-policed areas.
+Crime - which can lead to loss of life, physical injury, and significant economic and social impacts on individuals and communities - is inevitable. While it is impossible to completely prevent, it is the fundamental responsibility of the local government and its first responders to prioritize the safety of the public. The primary stakeholder for our project is the New York City Police Deparment, who are often faced with the challenge of the identifying where to place its forces to protect the city and enforce the laws. Currently, police departments often rely on historical arrest data alone to decide where to send its officers, leading to circular policing. It is not uncommon to see over-policing in recent high-activity zones and under-policing in potential blind spot areas with increasing crime. 
 
-To address this, we have developed a machine learning solution that moves beyond static crime prediction to officer resource deployment. Our model uses spatial grid-cells and precinct-level deployment data to determine the unique variance explained by police presence. By training a "Bias-Reduced Relative Risk" model and "zeroing out" deployment data, we identify which crime hotspots are structural and which are because of many officers being stationed there.
+To address this significant gap in protection, we have developed a machine learning solution that moves beyond static crime prediction to the impact of officer resource deployment on hotspots. Our project uses the NYPD Arrests Data API from the NYC Open Data platform as well as the 2025 NYPD Deployment and Accountability report. By combining the two datasets, our model uses spatial grid-cells and precinct-level deployment data to determine the unique variance explained by police presence in New York City. Moreover, by training a bias-reduced relative risk model and zeroing out the deployment data, we are able to idenitfy which crime hotspots are structural and which are because of many officers being deployed there.
 
-This solution addresses the stakeholder’s need to transition from reactive policing to optimized force fielding. It allows decision-makers to distinguish between areas that require consistent patrol for public safety and areas where resources can be reallocated to "explore" potential blind spots without losing coverage in known high-risk zones. This project could help in ensuring that NYC's resources are deployed based on community risk rather than historical reporting bias.
+This solution addresses the stakeholder’s need to transition from reactive policing to optimized force fielding. It allows decision-makers to distinguish between areas that require consistent patrol for public safety and areas where resources can be reallocated to "explore" potential blind spots without losing coverage in known high-risk zones. This project could help in ensuring that New York City's resources are deployed based on community risk rather than historical reporting bias.
 
 ### Literature Review
-The current landscape of predictive policing is dominated by algorithms designed to predict and prevent future incidents by analyzing historical data patterns (Lau). Traditionally, these methods rely on the "near-repeat victimization" theory, which says that future crimes are most likely to occur in close proximity, both spatially and temporally—to previously reported incidents. However, as highlighted by recent work (Haskins; Lum & Isaac), these models are frequently knocked down because they create self-enforcing feedback loops. When police are deployed to "hotspots" based on historical arrest data, they inevitably record more arrests in those areas, which the model then interprets as a continued surge in crime. This cycle often reinforces systemic biases, particularly racial factors, as the model essentially predicts where police are likely to go rather than where new, underlying crime is truly occurring.
+The current landscape of predictive policing is dominated by algorithms designed to predict and prevent future incidents by analyzing historical data patterns (Lau). Traditionally, these methods rely on the "near-repeat victimization" theory, which says that future crimes are most likely to occur in close proximity, both spatially and temporally to previously reported incidents. However, as highlighted by recent work (Haskins; Lum & Isaac), these models are frequently too simplified because they create self-enforcing feedback loops. When police are deployed to "hotspots" based on historical arrest data, they inevitably record more arrests in those areas, which the model then interprets as a continued surge in crime. This cycle often reinforces systemic biases, particularly racial factors, as the model essentially predicts where police are likely to go rather than where new, underlying crime is truly occurring.
 
 Our project addresses this by moving beyond simple density mapping to deployment analysis. We recognize that our primary stakeholder, like all police departments, operates under intense public scrutiny and requires a method to distinguish between crimes that occur regardless of police presence and arrests generated primarily because of officer density.
 
-The stakeholder needs for the NYPD are the following:
+The stakeholder needs we identified for the NYPD are the following:
 1. Bias-Reduced Predictions: The department needs to identify if a "hotspot" is truly a high-risk zone or if it is an artifact of high deployment. By "zeroing out" deployment data in our models, we provide a better picture of inherent risk.
-2. Resource Efficiency: To solve the "where do I field my forces?" problem, our model identifies "blind spots" which are areas where high crime is predicted despite low reporting. This allows stakeholders to shift from a reactive stance to a proactive, evidence-based exploration strategy.
-3. Public Accountability: By integrating the NYPD Deployment and Accountability report, we provide transparency into how officer headcounts and precinct accountability metrics correlate with arrest volumes, which ensures that deployment strategies make sense.
+2. Public Accountability: By integrating the NYPD Deployment and Accountability report, we provide transparency into how officer headcounts and precinct accountability metrics correlate with arrest volumes, which ensures that deployment strategies make sense.
 
 ### Data and Methods
 #### Data
 This study combines two data sources to create a multi-dimensional view of NYC public safety:
 
-NYPD Arrest Data (2023-to-Date): From the Socrata API from NYC Open Data. This dataset represents every arrest made in New York City from 2023 to the present. It contains over 500,000 records across features such as offense description (OFNS_DESC), law category (LAW_CAT_CD), borough, and high-precision spatial coordinates (Latitude/Longitude). We got this data because this will act as our "observed" crime in NYC.
-<img width="1484" height="881" alt="image" src="https://github.com/user-attachments/assets/196d1b90-f0c4-446a-a384-011d00f75d44" />
+NYPD Arrest Data (2023-to-Date): From the Socrata API from NYC Open Data. This dataset represents every arrest made in New York City from 2023 to the present. It contains over 500,000 records across features such as offense description (OFNS_DESC), law category (LAW_CAT_CD), borough, and high-precision spatial coordinates (Latitude/Longitude). This data will act as our "observed" crime in NYC. While the raw API data provides the where and when, the following visualizations help define the what and how. By examining the most common offenses alongside time-based distributions and variable correlations, we can establish a baseline for how police resources are currently distributed across the five boroughs.
+<img src="images/top15offenses.png" width="32%" />
+<img src="images/dowdistribution.png" width="32%" />
+<img src="images/corheatmap.png" width="32%" />
 
-NYPD Deployment and Accountability Report (2025): From official NYPD PDF downloads. This dataset provides "officer-level" features, including total assigned personnel per precinct and the percentage of the command flagged for accountability review.
-<img width="2683" height="887" alt="image" src="https://github.com/user-attachments/assets/8e1ee581-2fe0-41c3-be6e-9b868e737ec0" />
+NYPD Deployment and Accountability Report (2025): From official NYPD PDF downloads. This dataset provides "officer-level" features, including total assigned personnel per precinct and the percentage of the command flagged for accountability review. By analyzing NYPD personnel data alongside arrest records, we can better visualize the relationship between police presence and internal accountability. The following charts break down the percentage of command review flags by bureau and precinct, providing a baseline for assessing departmental oversight across New York City.
+<img src="images/nypd_overview.png" />
 
 We then merged these two data sources together on precint value and were left with 766,327 rows and 38 columns of data to work with. 
 
 **Merged Dataset Visuals:**
-<img width="2984" height="2732" alt="image" src="https://github.com/user-attachments/assets/57ad2a3e-a3f5-4c12-92b7-317a5f599330" />
+<img src="images/nypd_merged_analysis.png" />
 
 #### Methods
-Our modeling approach was designed to move beyond basic crime forecasting and into deployment analysis to address the potential over-policing problem.
-The primary target variable is crime_count which is the number of arrests in a given grid cell on a given day. Also, for alternative analysis, we derived hotspot indicators which grid cells with predicted crime in the top percentile (top 10%). The process involved a multi-stage pipeline:
-
+Our modeling approach was designed to move beyond basic crime forecasting and into deployment analysis to address the potential over-policing problem. The primary target variable is crime_count which is the number of arrests in a given grid cell on a given day. Also, for our alternative analysis, we derived hotspot indicators which grid cells with predicted crime in the top percentile (top 10%). The process involved a multi-stage pipeline:
 1. Data Transformation and Spatial Engineering: The raw arrest data (point coordinates) and deployment data (precinct headcounts) were on different spatial scales. To resolve this, we:
     - Created a Geospatial Grid: We rounded coordinates to two decimal places, creating approximately 2,000 unique grid cells (roughly 500m x 500m).
     - Nearest-Precinct Mapping: Using a BallTree algorithm with a Haversine metric, we calculated the distance between every grid cell centroid and the 77 NYPD precinct stations. Each cell was then assigned the officer headcount of its nearest precinct.
@@ -58,20 +57,22 @@ The primary target variable is crime_count which is the number of arrests in a g
     - XGBoost Regressor: This was our best approach. We used gradient boosting to handle the zero-inflated nature of the grid cells.
     - Counterfactual Simulation: Once the best model was trained,  we re-ran the test set with estimated_officers and % of command set to zero. This allowed us to observe which "hotspots" persisted versus those that vanished. We trained two versions of each model Baseline model (no deployment features) which includes only temporal, spatial, and historical crime features and a Deployment model (with deployment features) which adds deployment-related variables to assess their incremental predictive value.
 
-    ##### Hotspot Analysis
-    We defined crime hotspots as grid cells with predicted crime levels above the 90th percentile. Using this definition, we:
-    
-    Identified hotspots under observed deployment
-    Recomputed hotspots under counterfactual scenarios
-    Measured persistence of hotspots at the grid level
-    
-    This enables us to distinguish between:
-    
-    Persistent hotspots (likely driven by structural factors)
-    Deployment-sensitive hotspots (influenced by policing levels)
+##### Hotspot Analysis
+We defined crime hotspots as grid cells with predicted crime levels above the 90th percentile. Using this definition, we identified hotspots under observed deployment, recomputed hotspots under counterfactual scenarios, and measured persistence of hotspots at the grid level. This enables us to distinguish between persistent hotspots (likely driven by structural factors) and deployment-sensitive hotspots (influenced by policing levels).
 
-    ##### Alternative Approaches Considered
-    We explored several variations of the modeling approach. One of which was a simple model without lag features which performed poorly. This told us that temporal dependence is important for prediction. We         also looked at raw deployment variables only which hadd limited explanatory power, leading us to introduce normalized deployment intensity measures. We also looked at label encoding for categorical variables     but this introduced unintended ordinal relationships, so we replaced it with one-hot encoding. Our final approach reflects a balance between predictive performance and interpretability, while enabling            meaningful counterfactual analysis.
+##### Alternative Approaches Considered
+We explored several variations of the modeling approach. One of which was a simple model without lag features which performed poorly. This told us that temporal dependence is important for prediction. We also looked at raw deployment variables only which had limited explanatory power, leading us to introduce normalized deployment intensity measures. Furthermore, we looked at label encoding for categorical variables but this introduced unintended ordinal relationships, so we replaced it with one-hot encoding. Our final approach reflects a balance between predictive performance and interpretability, while enabling meaningful counterfactual analysis.
+
+### Supporting Files
+The supporting Jupyter notebooks are in the work/ directory.
+| Notebook | Purpose |
+| :--- | :--- |
+| data_preprocessing.ipynb | This notebook contains our initial data cleaning and EDA when we originally were going to use a 2026 YTD Arrest csv file. |
+| data_preprocessing_updated.ipynb | This notebook contains the final data cleaning and EDA when we used the API to extract the crime data. |
+| modeling.ipynb | This notebook contains initial grid creation and ideas prior to having all relevant datasets. |
+| modeling_use.ipynb | This notebook contains the Random Forest and XGBoost models we ran, with and without deployment. |
+
+--------------------------------------
     
 ### Results
 Our analysis yielded significant insights into the influence of deployment on reported crime. We evaluated our models using Mean Absolute Error (MAE) and R-squared (R²), as well as a custom "Hotspot Persistence" metric.
@@ -133,36 +134,32 @@ Highlights the role of deployment in explaining deviations
 
 Feature importance results from this model show increased relative importance of deployment-related variables, supporting the idea that deployment plays a role in shaping observed crime patterns.
 
+----------------------------------------------------
+
 ### Discussion
-We successfully achieved our goal of framing the problem as "Where do I field my forces?" rather than "Where will arrests happen?" By isolating the variance uniquely explained by deployment, we addressed the stakeholder need for Resource Efficiency. Our goal was to evaluate the relationship between police deployment and observed crime, and to provide a framework for more informed resource allocation.
+We achieved our goal of modeling the impact of police deployment on crime hotspots in New York City by isolating the variance uniquely explained by deployment. Our goal was to evaluate the relationship between police deployment and observed crime, and to provide a framework for more informed resource allocation. We were unable to specifically state where forces should be deployed, but by uncovering whether hotspots are structural or due to police density, we created a call to action. Our results indicate __% of New York City's crime hotspots may be the result of high deployment, and, hence, the NYPD should prioritize the __% of persistent hotspots wehre the model predicts high crime even in the absence of police.
 
-Our results indicate that about 1/3 of NYC's crime hotspots may be the result of high officer density. This is a call to action because instead of putting more forces into these "Vanishing Hotspots," they should prioritize the 68% of Persistent Hotspots where the model predicts high crime even in the absence of police.
+Furthermore, our Relative Risk model addresses the need for adaptability. By focusing on residuals, we identified "blind spots" which are areas where crime is currently low but relative risk is spiking. This indicates that many hotspots are driven by underlying structural factors, such as environmental or socioeconomic conditions, rather than deployment alone and provides the NYPD with a tool to explore new areas rather than repeatedly exploiting historical hotspots.
 
-Furthermore, our Relative Risk model addresses the need for Adaptability. By focusing on residuals, we identified "Blind Spots" which are areas where crime is currently low but relative risk is spiking. This provides the NYPD with a tool to explore new areas rather than repeatedly exploiting historical hotspots.
-
-This indicates that many hotspots are driven by underlying structural factors, such as environmental or socioeconomic conditions, rather than deployment alone.
-
-Looking at it from a stakeholder perspective, simply increasing deployment in known hotspots may not substantially reduce crime, resources may be more effectively allocated by identifying emerging or under-policed areas and counterfactual analysis provides a more nuanced understanding of where intervention is most needed.
-
-Our model partially addresses the stakeholder need for actionable and transparent insights, but it should be viewed as a decision-support tool rather than a prescriptive system.
-
+Looking at it from a stakeholder perspective, simply increasing deployment in known hotspots may not substantially reduce crime, resources may be more effectively allocated by identifying emerging or under-policed areas and counterfactual analysis provides a more nuanced understanding of where intervention is most needed. Our model partially addresses the stakeholder need for actionable and transparent insights, but it should be viewed as a decision-support tool rather than a prescriptive system.
 
 ### Limitations
 Despite our progress, this work has limitations:
 1. Proxy for Deployment: We used "Officers Assigned to Precinct" as a proxy for "Officers in a specific grid cell." In reality, patrols move within a precinct. Without GPS-level patrol data (which is not public), our "Deployment" feature remains an estimation.
 2. Reporting Bias vs. Deterrence: Our model struggles to distinguish between Detection (more police = more arrests) and Deterrence (more police = fewer crimes). If a hotspot "vanishes" when deployment is zeroed, it could be because the crime stopped happening or simply because no one was there to catch it.
-3. Data Granularity: While 500m grid cells are useful, crime is often street-level. Our model might smooth over nuances at the block-by-block level.
-4. Causal limitations: While we use counterfactual simulations, the model remains observational and cannot fully establish causal relationships.
-5.  Spatial approximation: grid cells are constructed using coordinate rounding, which may not perfectly align with real-world neighborhood boundaries.
-6.  Lack of external factors: the model does not include demographic, economic, or environmental variables that may influence crime patterns.
-
+3. Causal limitations: While we use counterfactual simulations, the model remains observational and cannot fully establish causal relationships.
+4. Spatial approximation: grid cells are constructed using coordinate rounding, which may not perfectly align with real-world neighborhood boundaries.
+5. Lack of external factors: the model does not include demographic, economic, or environmental variables that may influence crime patterns.
 
 ### Future Work
 The next steps for this project include:
-1. Integrating 911 Call Data: By merging Arrest data with 911 Calls for Service, we could create a "True Crime" proxy that is less dependent on officer-initiated activity.
-2. Sensitivity Analysis on Grid Size: We would like to test if "Observer Bias" becomes more or less pronounced at different spatial scales (e.g., 100m vs 1km).
-3. Policy Simulation: We aim to build a dashboard where a user can "drag and drop" 100 officers from one precinct to another and see the predicted shift in city-wide crime reporting volatility in real-time.
-4. External Datasets: Integrate external datasets such as demographics, weather, or economic indicators.
-5. Interactiveness: Create interactive visualizations or dashboards to support real-time decision-making
 
-Ultimately, future work could move from prediction and analysis toward a fully operational system for equitable and effective police deployment planning.
+
+### References
+“Delivering Accountability: A Plan To Stop Crime in Our Communities.” Center for American Progress, 29 Jan. 2026, www.americanprogress.org/article/delivering-accountability-a-plan-to-stop-crime-in-our-communities/. 
+
+Haskins, Caroline, et al. “Academics Confirm Major Predictive Policing Algorithm Is Fundamentally Flawed.” VICE, 9 Aug. 2024, www.vice.com/en/article/academics-confirm-major-predictive-policing-algorithm-is-fundamentally-flawed/. 
+
+Lau, Tim. “Predictive Policing Explained.” Brennan Center for Justice, 1 Apr. 2020, www.brennancenter.org/our-work/research-reports/predictive-policing-explained. 
+
+Turner, David. “Los Angeles County Crime Statistics & Trends (2020–2025).” Valley Alarm, 14 Oct. 2025, www.valleyalarm.com/los-angeles-crime-statistics/. 
