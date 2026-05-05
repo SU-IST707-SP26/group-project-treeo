@@ -7,45 +7,47 @@ Our team, Treeo, consists of three members:
 - Brealin Redecker - brealinredecker
 
 ### Introduction
-Our project utilizes the NYPD Year-to-Date Arrest dataset in conjunction with the 2025 NYPD Deployment and Accountability report. The primary stakeholder for this project is the New York City Police Department responsible for public safety budgeting. These stakeholders face the critical challenge of "The Observer Effect": crime data often reflects where police are already present (proactive arrests) rather than where crime is inherently occurring. This leads to a dangerous feedback loop where "hotspot" modeling encourages over-policing in high-activity zones while potentially ignoring "blind spots" in under-policed areas.
+Our project uses the NYPD Year-to-Date Arrest dataset as well as the 2025 NYPD Deployment and Accountability report. The primary stakeholder for this project is the New York City Police Department responsible for public safety budgeting. These stakeholders are faced with the challenge of "The Observer Effect" which essentially means that crime data often reflects where police are already present rather than where crime is inherently occurring. This leads to a potentially bias loop where "hotspot" modeling leads to over-policing in high-activity zones while potentially ignoring "blind spots" in under-policed areas.
 
-To address this, we have developed a machine learning solution that moves beyond static crime prediction to Counterfactual Resource Modeling. Our model uses spatial grid-cells and precinct-level deployment data to determine the unique variance explained by police presence. By training a "Bias-Reduced Relative Risk" model and subsequently "zeroing out" deployment data, we identify which crime hotspots are structural (persistent) and which are merely artifacts of high officer density (vanishing).
+To address this, we have developed a machine learning solution that moves beyond static crime prediction to officer resource deployment. Our model uses spatial grid-cells and precinct-level deployment data to determine the unique variance explained by police presence. By training a "Bias-Reduced Relative Risk" model and "zeroing out" deployment data, we identify which crime hotspots are structural and which are because of many officers being stationed there.
 
-This solution addresses the stakeholder’s need to transition from reactive policing to optimized force fielding. It allows decision-makers to distinguish between areas that require consistent patrol for public safety and areas where resources can be reallocated to "explore" potential blind spots without sacrificing coverage in known high-risk zones. This project represents a significant incremental step toward "Uncertainty-Aware" policing, ensuring that NYC's resources are deployed based on true community risk rather than historical reporting bias.
+This solution addresses the stakeholder’s need to transition from reactive policing to optimized force fielding. It allows decision-makers to distinguish between areas that require consistent patrol for public safety and areas where resources can be reallocated to "explore" potential blind spots without losing coverage in known high-risk zones. This project could help in ensuring that NYC's resources are deployed based on community risk rather than historical reporting bias.
 
 ### Literature Review
-The current landscape of predictive policing is dominated by algorithms designed to predict and prevent future incidents by analyzing historical data patterns (Lau). Traditionally, these methods rely on the "near-repeat victimization" theory, which posits that future crimes are most likely to occur in close proximity—both spatially and temporally—to previously reported incidents. However, as highlighted by recent scholarship (Haskins; Lum & Isaac), these models are frequently criticized for creating self-enforcing feedback loops. When police are deployed to "hotspots" based on historical arrest data, they inevitably record more arrests in those areas, which the model then interprets as a continued surge in crime. This cycle often reinforces systemic biases, particularly racial factors, as the model essentially predicts where police are likely to go rather than where new, underlying crime is truly occurring.
+The current landscape of predictive policing is dominated by algorithms designed to predict and prevent future incidents by analyzing historical data patterns (Lau). Traditionally, these methods rely on the "near-repeat victimization" theory, which says that future crimes are most likely to occur in close proximity—both spatially and temporally—to previously reported incidents. However, as highlighted by recent work (Haskins; Lum & Isaac), these models are frequently knocked down because they create self-enforcing feedback loops. When police are deployed to "hotspots" based on historical arrest data, they inevitably record more arrests in those areas, which the model then interprets as a continued surge in crime. This cycle often reinforces systemic biases, particularly racial factors, as the model essentially predicts where police are likely to go rather than where new, underlying crime is truly occurring.
 
-Our project addresses this "Observer Effect" by moving beyond simple density mapping to Counterfactual Deployment Analysis. We recognize that our primary stakeholder—the NYPD Strategic Planning Bureau—operates under intense public scrutiny and requires a method to distinguish between "Structural Crime" (crimes that occur regardless of police presence) and "Detection-Dependent Crime" (arrests generated primarily because of officer density).
+Our project addresses this by moving beyond simple density mapping to deployment analysis. We recognize that our primary stakeholder, like all police departments, operates under intense public scrutiny and requires a method to distinguish between crimes that occur regardless of police presence and arrests generated primarily because of officer density.
 
-The stakeholder needs for the NYPD are specific:
-1. Bias-Reduced Predictions: The department needs to identify if a "hotspot" is truly a high-risk zone or if it is an artifact of high deployment. By "zeroing out" deployment data in our models, we provide a clearer picture of inherent risk.
-2. Resource Efficiency and "Exploration": To solve the "where do I field my forces?" problem, our model identifies "blind spots"—areas where high crime is predicted despite low reporting. This allows stakeholders to shift from a purely reactive stance to a proactive, evidence-based exploration strategy.
-3. Public Accountability: By integrating the NYPD Deployment and Accountability report, we provide transparency into how officer headcounts and precinct accountability metrics correlate with arrest volumes, ensuring that deployment strategies are grounded in measurable data.
+The stakeholder needs for the NYPD are the following:
+1. Bias-Reduced Predictions: The department needs to identify if a "hotspot" is truly a high-risk zone or if it is an artifact of high deployment. By "zeroing out" deployment data in our models, we provide a better picture of inherent risk.
+2. Resource Efficiency: To solve the "where do I field my forces?" problem, our model identifies "blind spots" which are areas where high crime is predicted despite low reporting. This allows stakeholders to shift from a reactive stance to a proactive, evidence-based exploration strategy.
+3. Public Accountability: By integrating the NYPD Deployment and Accountability report, we provide transparency into how officer headcounts and precinct accountability metrics correlate with arrest volumes, which ensures that deployment strategies make sense.
 
 ### Data and Methods
 #### Data
-This study integrates two distinct data sources to create a multi-dimensional view of NYC public safety:
+This study combines two data sources to create a multi-dimensional view of NYC public safety:
 
-NYPD Arrest Data (2023-to-Date): Sourced via the Socrata API from NYC Open Data. This dataset represents every arrest made in New York City from 2023 to the present. It contains over 500,000 records across features such as offense description (OFNS_DESC), law category (LAW_CAT_CD), borough, and high-precision spatial coordinates (Latitude/Longitude). This data is the gold standard for "observed" crime in NYC.
+NYPD Arrest Data (2023-to-Date): From the Socrata API from NYC Open Data. This dataset represents every arrest made in New York City from 2023 to the present. It contains over 500,000 records across features such as offense description (OFNS_DESC), law category (LAW_CAT_CD), borough, and high-precision spatial coordinates (Latitude/Longitude). We got this data because this will act as our "observed" crime in NYC.
 <img width="1484" height="881" alt="image" src="https://github.com/user-attachments/assets/196d1b90-f0c4-446a-a384-011d00f75d44" />
 
-NYPD Deployment and Accountability Report (2025): Sourced from official NYPD PDF downloads. This dataset provides critical "officer-level" features, including total assigned personnel per precinct and the percentage of the command flagged for accountability review.
+NYPD Deployment and Accountability Report (2025): From official NYPD PDF downloads. This dataset provides "officer-level" features, including total assigned personnel per precinct and the percentage of the command flagged for accountability review.
 <img width="2683" height="887" alt="image" src="https://github.com/user-attachments/assets/8e1ee581-2fe0-41c3-be6e-9b868e737ec0" />
+
+We then merged these two data sources together on precint value and were left with 766,327 rows and 38 columns of data to work with. 
 
 **Merged Dataset Visuals:**
 <img width="2984" height="2732" alt="image" src="https://github.com/user-attachments/assets/57ad2a3e-a3f5-4c12-92b7-317a5f599330" />
 
 #### Methods
-Our modeling approach was designed to move beyond simple crime forecasting and into Counterfactual Analysis to address the "Observer Effect." The process involved a multi-stage pipeline:
+Our modeling approach was designed to move beyond basic crime forecasting and into deployment analysis to address the potential over-policing problem. The process involved a multi-stage pipeline:
 1. Data Transformation and Spatial Engineering: The raw arrest data (point coordinates) and deployment data (precinct headcounts) were on different spatial scales. To resolve this, we:
     - Created a Geospatial Grid: We rounded coordinates to two decimal places, creating approximately 2,000 unique grid cells (roughly 500m x 500m).
     - Nearest-Precinct Mapping: Using a BallTree algorithm with a Haversine metric, we calculated the distance between every grid cell centroid and the 77 NYPD precinct stations. Each cell was then assigned the officer headcount of its nearest precinct.
     - Temporal Aggregation: We aggregated the data to a daily level, ensuring the model could learn from day-of-week and seasonal trends.
 2. Target Variable Selection: We tested two targets: 
     - Target A (Base): crime_count (The raw number of arrests in a cell on a given day).
-    - Target B (Relative Risk/Residuals): The difference between the log-transformed actual arrests and the 30-day rolling mean. This "Bias-Reduced" target focuses on volatility—identifying when crime is higher than expected for that specific location.
-3. Feature Engineering: To provide the model with context, we engineered:
+    - Target B (Relative Risk/Residuals): The difference between the log-transformed actual arrests and the 30-day rolling mean. This "Bias-Reduced" target loooks at volatility when crime is higher than expected for that specific location.
+3. Feature Engineering: To provide the model with context, we made:
     - Lag Features: 1-day, 7-day, and 30-day lags to capture recent trends. 
     - Deployment Metrics: estimated_officers and % of command (Accountability metrics).
     - Categorical Encodings: One Hot Encoding for Boroughs and Precincts.
