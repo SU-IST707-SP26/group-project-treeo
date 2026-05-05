@@ -14,7 +14,7 @@ To address this, we have developed a machine learning solution that moves beyond
 This solution addresses the stakeholder’s need to transition from reactive policing to optimized force fielding. It allows decision-makers to distinguish between areas that require consistent patrol for public safety and areas where resources can be reallocated to "explore" potential blind spots without losing coverage in known high-risk zones. This project could help in ensuring that NYC's resources are deployed based on community risk rather than historical reporting bias.
 
 ### Literature Review
-The current landscape of predictive policing is dominated by algorithms designed to predict and prevent future incidents by analyzing historical data patterns (Lau). Traditionally, these methods rely on the "near-repeat victimization" theory, which says that future crimes are most likely to occur in close proximity—both spatially and temporally—to previously reported incidents. However, as highlighted by recent work (Haskins; Lum & Isaac), these models are frequently knocked down because they create self-enforcing feedback loops. When police are deployed to "hotspots" based on historical arrest data, they inevitably record more arrests in those areas, which the model then interprets as a continued surge in crime. This cycle often reinforces systemic biases, particularly racial factors, as the model essentially predicts where police are likely to go rather than where new, underlying crime is truly occurring.
+The current landscape of predictive policing is dominated by algorithms designed to predict and prevent future incidents by analyzing historical data patterns (Lau). Traditionally, these methods rely on the "near-repeat victimization" theory, which says that future crimes are most likely to occur in close proximity, both spatially and temporally—to previously reported incidents. However, as highlighted by recent work (Haskins; Lum & Isaac), these models are frequently knocked down because they create self-enforcing feedback loops. When police are deployed to "hotspots" based on historical arrest data, they inevitably record more arrests in those areas, which the model then interprets as a continued surge in crime. This cycle often reinforces systemic biases, particularly racial factors, as the model essentially predicts where police are likely to go rather than where new, underlying crime is truly occurring.
 
 Our project addresses this by moving beyond simple density mapping to deployment analysis. We recognize that our primary stakeholder, like all police departments, operates under intense public scrutiny and requires a method to distinguish between crimes that occur regardless of police presence and arrests generated primarily because of officer density.
 
@@ -134,65 +134,35 @@ Highlights the role of deployment in explaining deviations
 Feature importance results from this model show increased relative importance of deployment-related variables, supporting the idea that deployment plays a role in shaping observed crime patterns.
 
 ### Discussion
-We successfully achieved our goal of framing the problem as "Where do I field my forces?" rather than "Where will arrests happen?" By isolating the variance uniquely explained by deployment, we addressed the stakeholder need for Resource Efficiency.
+We successfully achieved our goal of framing the problem as "Where do I field my forces?" rather than "Where will arrests happen?" By isolating the variance uniquely explained by deployment, we addressed the stakeholder need for Resource Efficiency. Our goal was to evaluate the relationship between police deployment and observed crime, and to provide a framework for more informed resource allocation.
 
-Our results indicate that about 1/3 of NYC's crime hotspots may be artifacts of high officer density. For a stakeholder like the NYPD, this is a call to action because instead of putting more forces into these "Vanishing Hotspots," they should prioritize the 68% of Persistent Hotspots where the model predicts high crime even in the absence of police.
+Our results indicate that about 1/3 of NYC's crime hotspots may be the result of high officer density. This is a call to action because instead of putting more forces into these "Vanishing Hotspots," they should prioritize the 68% of Persistent Hotspots where the model predicts high crime even in the absence of police.
 
 Furthermore, our Relative Risk model addresses the need for Adaptability. By focusing on residuals, we identified "Blind Spots" which are areas where crime is currently low but relative risk is spiking. This provides the NYPD with a tool to explore new areas rather than repeatedly exploiting historical hotspots.
 
-### Discussion 2.0
-Discussion
-
-Our goal was to evaluate the relationship between police deployment and observed crime, and to provide a framework for more informed resource allocation.
-
-Overall, our results suggest that:
-
-Historical crime patterns are the strongest predictor of future crime
-Police deployment contributes additional explanatory power, but to a lesser extent
-A significant portion of crime hotspots persist even in the absence of policing
-
 This indicates that many hotspots are driven by underlying structural factors, such as environmental or socioeconomic conditions, rather than deployment alone.
 
-From a stakeholder perspective, this has important implications:
-
-Simply increasing deployment in known hotspots may not substantially reduce crime
-Resources may be more effectively allocated by identifying emerging or under-policed areas
-Counterfactual analysis provides a more nuanced understanding of where intervention is most needed
+Looking at it from a stakeholder perspective, simply increasing deployment in known hotspots may not substantially reduce crime, resources may be more effectively allocated by identifying emerging or under-policed areas and counterfactual analysis provides a more nuanced understanding of where intervention is most needed.
 
 Our model partially addresses the stakeholder need for actionable and transparent insights, but it should be viewed as a decision-support tool rather than a prescriptive system.
+
 
 ### Limitations
 Despite our progress, this work has limitations:
 1. Proxy for Deployment: We used "Officers Assigned to Precinct" as a proxy for "Officers in a specific grid cell." In reality, patrols move within a precinct. Without GPS-level patrol data (which is not public), our "Deployment" feature remains an estimation.
 2. Reporting Bias vs. Deterrence: Our model struggles to distinguish between Detection (more police = more arrests) and Deterrence (more police = fewer crimes). If a hotspot "vanishes" when deployment is zeroed, it could be because the crime stopped happening or simply because no one was there to catch it.
 3. Data Granularity: While 500m grid cells are useful, crime is often street-level. Our model might smooth over nuances at the block-by-block level.
+4. Causal limitations: While we use counterfactual simulations, the model remains observational and cannot fully establish causal relationships.
+5.  Spatial approximation: grid cells are constructed using coordinate rounding, which may not perfectly align with real-world neighborhood boundaries.
+6.  Lack of external factors: the model does not include demographic, economic, or environmental variables that may influence crime patterns.
 
-### Limitations 2.0
-Despite strong modeling results, several limitations remain:
-1. Deployment data granularity
-    Deployment data is available only at the precinct level and is relatively static, limiting our ability to capture daily variation in policing.
-2. Use of arrest data as a proxy for crime
-    Arrests reflect both criminal activity and police presence, introducing potential bias into the target variable.
-3. Lack of external factors
-    The model does not include demographic, economic, or environmental variables that may influence crime patterns.
-4. Spatial approximation
-    Grid cells are constructed using coordinate rounding, which may not perfectly align with real-world neighborhood boundaries.
-5. Causal limitations
-    While we use counterfactual simulations, the model remains observational and cannot fully establish causal relationships.
 
 ### Future Work
 The next steps for this project include:
 1. Integrating 911 Call Data: By merging Arrest data with 911 Calls for Service, we could create a "True Crime" proxy that is less dependent on officer-initiated activity.
 2. Sensitivity Analysis on Grid Size: We would like to test if "Observer Bias" becomes more or less pronounced at different spatial scales (e.g., 100m vs 1km).
 3. Policy Simulation: We aim to build a dashboard where a user can "drag and drop" 100 officers from one precinct to another and see the predicted shift in city-wide crime reporting volatility in real-time.
-
-### Future Work 2.0
-There are several opportunities to extend this work:
-
-Incorporate dynamic deployment data (e.g., patrol logs, shift-level data)
-Integrate external datasets such as demographics, weather, or economic indicators
-Develop a true causal inference framework (e.g., instrumental variables or causal forests)
-Build a deployment optimization model that recommends resource allocation subject to constraints
-Create interactive visualizations or dashboards to support real-time decision-making
+4. External Datasets: Integrate external datasets such as demographics, weather, or economic indicators.
+5. Interactiveness: Create interactive visualizations or dashboards to support real-time decision-making
 
 Ultimately, future work could move from prediction and analysis toward a fully operational system for equitable and effective police deployment planning.
