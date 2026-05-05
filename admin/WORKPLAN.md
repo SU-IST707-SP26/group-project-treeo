@@ -12,13 +12,13 @@
 - [✅] M2.T1 — Clean crime data (remove nulls or duplicates, normalize fields) (Ashley)
 - [✅] M2.T2 — Extract temporal features (hour, day, month, year) (Brealin)
 - [✅] M2.T3 — Create basic features (lagged and rolling statistical features)
-- [] M2.T4 — Identify if dimensionality reduction is necessary
+- [🚫] M2.T4 — Identify if dimensionality reduction is necessary
 
 ### Milestone 3: Spatial Resolution
 - [✅] M3.T1 — Validate and filter spatial coordinates (Ashley)
 - [✅] M3.T2 — Divide the spatial data into uniform geographic cells
-- [] M3.T3 — Map and aggregate crime within each cell
-- [] M3.T4 — Implement change point detection techniques
+- [✅] M3.T3 — Map and aggregate crime within each cell
+- [🚫] M3.T4 — Implement change point detection techniques
 
 ### Milestone 4: Modeling Attempts
 - [✅] M4.T1 — Train/test split by date
@@ -27,15 +27,15 @@
 - [✅] M4.T4 — Random Forest model
 
 ### Milestone 5: Advanced Modeling
-- [ ] M5.T1 — Implement spatial lag and rolling features
-- [ ] M5.T2 — Time series models for temporal patterns
-- [ ] M5.T3 — Refine and tune techniques with different hyperparamters
-- [ ] M5.T4 — Combine and/or add other approaches
+- [✅] M5.T1 — Implement spatial lag and rolling features
+- [🚫] M5.T2 — Time series models for temporal patterns
+- [✅] M5.T3 — Refine and tune techniques with different hyperparamters
+- [✅] M5.T4 — Combine and/or add other approaches
 
 ### Milestone 6: Evaluation and Visualization
-- [ ] M6.T1 — Comprehensive test set evaluation using time aware techniques and other common metrics
-- [ ] M6.T2 — Map visualizations of the LA area
-- [ ] M6.T3 — Final documentation
+- [🚫] M6.T1 — Comprehensive test set evaluation using time aware techniques and other common metrics
+- [🚫] M6.T2 — Map visualizations of the LA area
+- [✅] M6.T3 — Final documentation
 
 ---
 
@@ -45,3 +45,6 @@
 
 ### 2026-04-05
 - (Ashley) M4 — Added a XGBoost model
+
+### 2026-04-29
+- As we switched from LA to NYC and our datasets changed, we had to redo most of initial workplan to fit the revised vision
