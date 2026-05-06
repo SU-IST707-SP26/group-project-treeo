@@ -16,6 +16,7 @@
 
 **Work Completed**:
 - Created the final submission file and began filling in sections with previous work and ideas to include (Ashley)
+- Reviewed final submission outline and combined some of our old project work into our new outline (Maddy)
 
 **Files Created**:
 - `final/submission.ipynb`
@@ -36,8 +37,8 @@
 **Context**: Updated our vision to focus on NYC and impact of police deployment on hotspots
 
 **Work Completed**:
-- Found new crime datasets for NYC (Ashley and Maddy)
-- Data cleaning, preprocessing, and exploratory analysis on the new data (Ashley and Maddy)
+- Found new crime and deployment datasets for NYC (Ashley and Maddy)
+- Data cleaning, preprocessing, and exploratory analysis and created visualizations on the new data (Ashley and Maddy)
 - Since we know we need to use tree-based models from our previous investigation, created RandomForest and XGBoost models immediately (Maddy) 
 
 **Files Created**:
@@ -55,6 +56,8 @@
 **Work Completed**:
 - Handled imbalanced data by undersampling non-hotspot cells and prioritized recall
 - Transitioned to using precision, recall, F1-score, and AUC metrics
+- Created an outline for final presentation held in class (Maddy)
+- Reviewed and added information to presentation (Ashley and Brealin)
 
 **Files Created**:
 - `checkpoint/models/Updated Models.ipynb`
@@ -113,6 +116,7 @@
     - https://bjs.ojp.gov/library/publications/criminal-victimization-2024 - includes crimes not reported and why
     - https://www.icpsr.umich.edu/web/DSDR/series/57 - track changes in deployment and crime reporting over many jurisdictions
     - https://direct.mit.edu/rest/article/107/6/1734/117710/Smartphone-Data-Reveal-Neighborhood-Level-Racial - uses anonymized smartphone pings to track where police officers actually spend their time during their shifts
+- Found other potential datasets and ultimately landed on the NYC deployment data (Maddy)
 
 **Impact**: Download data that can be incorporated into our models
 
